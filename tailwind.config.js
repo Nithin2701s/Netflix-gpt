@@ -6,8 +6,9 @@ module.exports = {
   ],
   theme: {
     extend: {
+      // Custom animation configurations
       animation: {
-        'spin-custom': 'spin 2s linear infinite', // Custom duration: 2 seconds
+        'spin-custom': 'spin 3s linear infinite', 
       },
     },
   },

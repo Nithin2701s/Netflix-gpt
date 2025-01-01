@@ -1,11 +1,11 @@
 import React from 'react'
 
-const Demo = () => {
+const Browse = () => {
   return (
     <div>
-      Hi this is Nithin
+      Browse
     </div>
   )
 }
 
-export default Demo
+export default Browse
