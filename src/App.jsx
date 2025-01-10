@@ -1,13 +1,13 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import { Provider } from 'react-redux'
 import Body from './components/Body'
+import appStore from './store/store'
 
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
-    <Body/>
+    <Provider store={appStore}>
+      <Body/>
+    </Provider>
   )
 }
 
