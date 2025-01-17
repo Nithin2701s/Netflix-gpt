@@ -19,4 +19,11 @@
     - MovieLists * N
 - NetflixGPT
  - Search Bar
- - Movie Suggestions    
+ - Movie Suggestions   
+
+# Responsive design
+- Tailwind CSS
+ - By default mobile
+ - 'md:'(>=768px) for Desktop
+ - 'sm:'(>=640px)
+ - 'lg:'(>=1024px)
