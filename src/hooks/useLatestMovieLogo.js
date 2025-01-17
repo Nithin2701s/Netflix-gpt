@@ -13,7 +13,7 @@ const useLatestMovieLogo = (movieId)=>{
           API_OPTIONS
         );
         const json = await response.json();
-        console.log(json.logs);
+        // console.log(json.logs);
         setImage(json?.logos?.[0]);
       };
       return image

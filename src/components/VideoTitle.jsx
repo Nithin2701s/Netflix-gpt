@@ -38,7 +38,7 @@ const VideoTitle = ({ movieId, overview, adult }) => {
       </div>
       </div>
       <div className="self-center justify-self-end pr-16 pl-2 border-l-4 py-2  bg-gray-500 bg-opacity-50 ">
-        <h1>{adult? 'A':'UA'}</h1>
+        <h1>{adult? 'A':'U/A'}</h1>
       </div>
     </div>
   );

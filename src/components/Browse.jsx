@@ -8,8 +8,7 @@ const Browse = () => {
     <div className='bg-black'>
       <Header/>
        <MainContainer/>
-       <SecondaryContainer/>    
-     
+       <SecondaryContainer/>       
     </div>
   )
 }
