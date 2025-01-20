@@ -11,7 +11,7 @@ const useMovieBackdrop = (movieId) => {
     const getImage = async () => {
       try {
         const response = await fetch(
-          `https://api.themoviedb.org/3/movie/${movieId}/images?`,
+          `https://api.themoviedb.org/3/movie/${movieId}/images?include_image_language=en`,
           { ...API_OPTIONS }
         );
         if (!response.ok) {
