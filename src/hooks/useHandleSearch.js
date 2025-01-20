@@ -18,7 +18,7 @@ const useHandleSearch = (query)=>{
           const chunkText = chunk.text();
           text += chunkText;
         }
-        const movies = text.split(", ");
+        const movies = text.split(",");
         dispatch(addSearchResult(movies));
       };
       return handleSearch;
