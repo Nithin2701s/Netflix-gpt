@@ -1,61 +1,92 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { auth } from "../utils/firebase";
-import { onAuthStateChanged, signOut } from "firebase/auth";
-import { addUser, removeUser } from "../store/UserSlice";
-import { useNavigate } from "react-router";
-import { USER_AVATAR } from "../utils/constants";
+import { signOut } from "firebase/auth";
+import { lang, langConfig, USER_AVATAR } from "../utils/constants";
+import useAuth from "../hooks/useAuth";
+import { changeLang, toggleGPT } from "../store/GPTSlice";
 const Header = () => {
-  const user = useSelector(state => state.user)
-  const dispatch = useDispatch()
-  const navigate =  useNavigate()
+  useAuth();
+  const user = useSelector((state) => state.user);
   const [isOpen, setIsOpen] = useState(false);
- 
-  useEffect(()=>{
-    const unsubscribe = onAuthStateChanged(auth,(user)=>{
-      if(user){
-        const {uid,email,displayName} = user
-        dispatch(addUser({uid,email,displayName}))
-        navigate('/browse')
-      } else {
-         dispatch(removeUser())
-         navigate('/')
-      }
-    })
-    return ()=> unsubscribe();
-  },[])
+  const dispatch = useDispatch();
+  const {showGPT,langId} = useSelector((state) => state.gpt);
   const openDropdown = () => {
     setIsOpen(true);
   };
   const closeDropdown = () => {
     setIsOpen(false);
   };
-  const handleSiginOut = ()=>{
-    signOut(auth).then(() => {
-    }).catch((error) => {
-      alert(error.code + error.message)
-    });
+  const handleSiginOut = () => {
+    signOut(auth)
+      .then(() => {})
+      .catch((error) => {
+        alert(error.code + error.message);
+      });
+  };
+  const handleGPT = () => {
+    dispatch(toggleGPT());
+  };
+   
+  const handleLangSelect = (e)=>{
+    dispatch(changeLang(e.target.value))
   }
 
+
   return (
-    <div className="absolute bg-gradient-to-b from-black px-8 mt-[-15px] w-full z-10 flex items-center justify-between"> 
-     <img src='Netflix-Logo.png' alt="" className="h-[7.3rem] ml-24 pointer-events-none"  />
+    <div className='fixed bg-gradient-to-b from-black px-8 lg:mt-[-15px] w-full z-10 flex items-center justify-between'>
+      <div className="w-1/3">
+      <img
+        src='Netflix-Logo.png'
+        alt=''
+        className='h-[5rem] md:h-[7.3rem] lg:ml-24 pointer-events-none'
+        />
+        </div>
+      <div className="w-2/3 md:w-3/12">
+        {user && (
+          <div className='flex justify-end items-center cursor-pointer'>
+            {showGPT && (
+              <div className="w-3/12">
+                <select
+                  name='lang'
+                  id='lang'
+                  onChange={handleLangSelect}
+                  className='bg-gray-900 text-white text-xs md:text-sm p-1 md:p-2'
+                >
+                  {langConfig.map(lang =><option key={lang.id } value={lang.id}>{lang.name}</option>)}
+                </select>
+              </div>
+            )}
+            <div className="flex justify-end gap-x-2 w-9/12 md:gap-x-5">
 
-     {user && <div onMouseLeave={closeDropdown}>
-
-      <div onMouseOver={openDropdown} className="flex gap-x-2">
-      <img src= {USER_AVATAR}
-       alt=""
-        className="w-10 rounded-md overflow-hidden cursor-pointer" />
-        <span className="text-white text-xs self-center cursor-pointer">{"▼"}</span>
+            <div onClick={handleGPT} className="">
+              <h1 className='text-gray-300 bg-blue-600 p-1 px-2 md:p-2 md:px-4 text-xs md:w-24 text-center rounded-md md:text-sm '>
+                {showGPT ? lang?.[langId].homepage : "Search"}
+              </h1>
+            </div>
+            <div onMouseLeave={closeDropdown} className="">
+              <div onMouseOver={openDropdown} className='flex gap-x-2'>
+                <img
+                  src={USER_AVATAR}
+                  alt=''
+                  className='w-7 md:w-10 rounded-md overflow-hidden cursor-pointer'
+                  />
+                <span className='text-white text-xs md:text-sm self-center cursor-pointer'>
+                  {"▼"}
+                </span>
+              </div>
+              {isOpen && (
+                <div className='absolute  bg-black right-10 top-20 w-20 lg:w-28'>
+                  <button className='text-white p-2' onClick={handleSiginOut}>
+                    {lang?.[langId].signout}
+                  </button>
+                </div>
+              )}
+              </div>
+            </div>
+          </div>
+        )}
       </div>
-      {isOpen && (
-        <div  className="absolute bg-black right-10 top-20 w-28">
-           <button className="text-white p-2" 
-      onClick={handleSiginOut}
-      >sign out</button>
-          </div>)}
-     </div>}
     </div>
   );
 };

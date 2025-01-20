@@ -2,8 +2,8 @@ import React, { useState } from 'react'
  import { TMDB_IMAGE_URL } from '../utils/constants' 
 import useMovieBackdrop from '../hooks/useMovieBackdrop'
 const MovieCard = ({movie}) => {
-  const [scale,setScale] = useState(false)
   const image = useMovieBackdrop(movie.id)
+  const [scale,setScale] = useState(false)
   const handleMouseOver = ()=>{
     setScale(true)
   }
@@ -11,21 +11,17 @@ const MovieCard = ({movie}) => {
     setScale(false)
   }
   return (
-    <div className={` p-1 py-4 h-[15rem] text-white self-center ${scale ? 'overflow-visible  shadow-black shadow-2xl scale-125 ease-in duration-200' : ''}`} onMouseLeave={handleMouseLeave}>
-      <div className={`w-60 h-[8rem] overflow-y-hidden`} onMouseOver={handleMouseOver}>
-        <img src={TMDB_IMAGE_URL + (image? image.file_path :movie?.poster_path)} alt=""
-        className='object-cover'
-         />
-      </div>
-      {scale && (<div className='text-white flex gap-x-2 w-full h-[5rem] items-center z-40 p-5 bg-gray-800'>
-        <div>
-         <h1 className='text-sm'>  {movie?.title}</h1>
-        </div>
-        <div>
-         <h1 className='text-sm border-red-500 border px-3'>{movie?.adult? 'A':'U/A'}</h1>
-        </div>
-      </div>)}
-       </div>
+   image && (<div className='mx-5 transform transition-transform duration-300 hover:scale-115 text-white h-52' onMouseLeave={handleMouseLeave}>
+          <div className={` w-64`} onMouseOver={handleMouseOver}>
+          <img src={TMDB_IMAGE_URL + image?.file_path} alt="" className='w-96'  /> 
+          {scale && <div className={`p-2  w-64 justify-between bg-gray-800 ${scale? 'flex':'hidden' }`}>
+           <div className='text-sm w-3/4 text-wrap'>{movie?.title}</div> 
+            <div className='border border-red-800 px-2 ml-2 h-1/2 w-1/4 text-sm self-center'>
+               {movie?.adult? 'A':'U/A'}
+            </div>
+          </div>}
+          </div>
+       </div>)
   )
 }
 

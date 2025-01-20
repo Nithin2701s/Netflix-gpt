@@ -1,13 +1,14 @@
 import { useEffect } from "react"
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { addHorrorMovies } from "../store/MoviesSlice"
 import { API_OPTIONS, TMDB_MOVIE_LIST_URL } from "../utils/constants"
 
 
 const useHorrorMovies = ()=>{
     const dispatch = useDispatch()
+    const horrorMovies = useSelector(state => state.movies?.horrorMovies);
   useEffect(()=>{
-    getHorrorMovies()
+   !horrorMovies && getHorrorMovies()
   },[])
   
   const getHorrorMovies = async()=>{

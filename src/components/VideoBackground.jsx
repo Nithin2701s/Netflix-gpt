@@ -18,7 +18,6 @@ const VideoBackground = ({ movieId }) => {
         rel: 0,
         showinfo: 0,
         fs: 1,
-        mute: 1,
         loop: 1,
         playlist: latestVideoTrailer?.key,
       },
@@ -32,7 +31,7 @@ const VideoBackground = ({ movieId }) => {
   };
 
   return (
-    <div className="w-full aspect-video">
+    <div className="w-full aspect-video hidden lg:block">
       <ReactPlayer
         ref={playerRef}
         className="w-full h-full"
