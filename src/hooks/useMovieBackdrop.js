@@ -18,8 +18,7 @@ const useMovieBackdrop = (movieId) => {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
         const json = await response.json();
-        const {backdrops} = json && json;
-         setImage(backdrops?.[backdrops?.length -1] || json?.logos?.[0] || null);
+         setImage(json?.backdrops?.[0] || json?.logos?.[0] || null);
       } catch (error) {
         if (error.name !== "AbortError") {
           console.error("Failed to fetch movie backdrop:", error);
