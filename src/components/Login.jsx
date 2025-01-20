@@ -65,8 +65,8 @@ const Login = () => {
           className='opacity-45 w-full h-screen'
         />
       </div>
-      <form className='absolute bg-black p-12 w-3/12 my-32 mx-auto right-0 left-0 text-white bg-opacity-75 shadow-2xl shadow-black'>
-        <h1 className='text-2xl font-bold my-4'>
+      <form className='absolute bg-black p-12  sm:w-6/12 lg:w-3/12 my-32 mx-auto right-0 left-0 text-white bg-opacity-75 shadow-2xl shadow-black'>
+        <h1 className='text-xl md:text-2xl font-bold my-4'>
           {isSignIn ? "Sign In" : "Sign Up"}
         </h1>
         {!isSignIn && (
@@ -76,7 +76,7 @@ const Login = () => {
             name='username'
             id='username'
             placeholder='Username'
-            className='py-4 px-3 my-2 w-full bg-transparent text-sm font-semibold border-red-600 border rounded-sm focus:bg-slate-500 focus:bg-opacity-35 placeholder:text-sm'
+            className='py-4 px-3 my-2 w-full bg-transparent text-xs md:text-sm font-semibold border-red-600 border rounded-sm focus:bg-slate-500 focus:bg-opacity-35 placeholder:text-sm'
           />
         )}
         <input
@@ -86,7 +86,7 @@ const Login = () => {
           name='email'
           id='email'
           placeholder='Email Address'
-          className='py-4 px-3 my-2 w-full bg-transparent text-sm font-semibold border-red-600 border rounded-sm focus:bg-slate-500 focus:bg-opacity-35 placeholder:text-sm'
+          className='py-4 px-3 my-2 w-full bg-transparent text-xs md:text-sm font-semibold border-red-600 border rounded-sm focus:bg-slate-500 focus:bg-opacity-35 placeholder:text-sm'
         />
         {!isEmailValid && (
           <span className='text-red-700 text-base'>
@@ -100,7 +100,7 @@ const Login = () => {
           name='password'
           id='password'
           placeholder='Password'
-          className='py-3 px-4 my-2 w-full bg-transparent text-sm border-red-600 border rounded-sm focus:bg-slate-500 focus:bg-opacity-35 placeholder:text-sm'
+          className='py-3 px-4 my-2 w-full bg-transparent text-xs md:text-sm border-red-600 border rounded-sm focus:bg-slate-500 focus:bg-opacity-35 placeholder:text-sm'
         />
         {!isPassValid && (
           <span className='text-red-700 text-base'>⊗ invalid Password</span>
@@ -108,7 +108,7 @@ const Login = () => {
         <button
           type='submit'
           onClick={handleLogin}
-          className='py-2 px-4 my-2  bg-red-700 w-full rounded-sm text-sm font-semibold'
+          className='py-2 px-4 my-2  bg-red-700 w-full rounded-sm text-xs md:text-sm font-semibold'
         >
           {isSignIn ? "Sign In" : "Sign Up"}
         </button>
@@ -134,10 +134,10 @@ const Login = () => {
             </span>
           </p>
         )}
-        <p className='text-xs text-neutral-500 font-medium'>
+        {/* <p className='text-xs text-neutral-500 font-medium'>
           This page is protected by Google reCAPTCHA to ensure you're not a bot.{" "}
           <span className='text-blue-700'>Learn more.</span>
-        </p>
+        </p> */}
       </form>
     </div>
   );
