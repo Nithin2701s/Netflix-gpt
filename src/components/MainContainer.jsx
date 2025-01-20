@@ -1,5 +1,5 @@
 import React from 'react'
-import VideoTitle from './VIdeoTItle'
+import VideoTitle from './VideoTitle'
 import VideoBackground from './VideoBackground'
 import { useSelector } from 'react-redux'
 import { TMDB_IMAGE_URL } from '../utils/constants'
