@@ -35,7 +35,7 @@ const Login = () => {
         email.current.value,
         password.current.value
       )
-        .then(() => {})
+        .then(() => {setIsSignIn(true)})
         .catch((err) => {
           const errCode = err.code;
           const errMessage = err.message;

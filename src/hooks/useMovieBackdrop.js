@@ -21,7 +21,7 @@ const useMovieBackdrop = (movieId) => {
          setImage(json?.backdrops?.[0] || json?.logos?.[0] || null);
       } catch (error) {
         if (error.name !== "AbortError") {
-          console.error("Failed to fetch movie backdrop:", error);
+          // console.error("Failed to fetch movie backdrop:", error);
         }
       }
     };
