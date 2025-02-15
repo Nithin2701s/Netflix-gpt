@@ -5,7 +5,7 @@ import useLatestMovieLogo from "../hooks/useLatestMovieLogo";
 const VideoTitle = ({ movieId, overview, adult}) => {
     const image =  useLatestMovieLogo(movieId)
   return (
-    <div className=' text-white flex bg-black  bg-repeat-round bg-opacity-30  pt-[20%] lg:absolute w-full overflow-x-hidden aspect-video'>
+    <div className=' text-white flex bg-black  bg-repeat-round bg-opacity-30  pt-[19%] lg:absolute w-full overflow-x-hidden aspect-video'>
       {/* <h1 className='text-5xl font-bold p-5'>
         {title}
       </h1> */}
@@ -14,7 +14,7 @@ const VideoTitle = ({ movieId, overview, adult}) => {
       <img
         src={TMDB_IMAGE_URL + image?.file_path}
         alt=''
-        className="w-3/12 hidden my-5 lg:block"
+        className="w-3/12 hidden mb-2 lg:block"
         />
       <p className='w-1/3 p-2 text-sm hidden lg:block'>{overview}</p>
       <div className='flex justify-center lg:justify-start gap-x-4 lg:gap-x-5'>
