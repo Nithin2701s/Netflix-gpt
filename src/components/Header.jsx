@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { auth } from "../utils/firebase";
 import { signOut } from "firebase/auth";
-import { lang, langConfig, USER_AVATAR } from "../utils/constants";
+import { lang, langConfig } from "../utils/constants";
+import USER_AVATAR from '../assets/avatar.png'
 import useAuth from "../hooks/useAuth";
 import { changeLang, toggleGPT } from "../store/GPTSlice";
 import SearchBar from "./SearchBar";
