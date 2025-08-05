@@ -4,6 +4,7 @@ import {
   TMDB_IMAGE_URL,
   TMDB_MOVIE_LIST_URL,
 } from "../utils/constants";
+import img from '../assets/image.png';
 
 const SearchBar = () => {
   const [searchText, setSearchText] = useState("");
@@ -54,7 +55,7 @@ const SearchBar = () => {
         />
         <button htmlFor='Search' className='text-lg px-4 w-2/12'>
           <img
-            src='src\assets\image.png'
+            src={img}
             alt='search-icon'
             className='p-3'
           />
