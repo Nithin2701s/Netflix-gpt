@@ -5,6 +5,7 @@ import { signOut } from "firebase/auth";
 import { lang, langConfig, USER_AVATAR } from "../utils/constants";
 import useAuth from "../hooks/useAuth";
 import { changeLang, toggleGPT } from "../store/GPTSlice";
+import SearchBar from "./SearchBar";
 const Header = () => {
   useAuth();
   const user = useSelector((state) => state.user);
@@ -42,7 +43,12 @@ const Header = () => {
         className='h-[5rem] md:h-[7.3rem] lg:ml-24 pointer-events-none'
         />
         </div>
-      <div className="w-2/3 md:w-3/12">
+   
+          <div className="w-1/3"> 
+            {user && !showGPT && <SearchBar/>}
+           </div>
+
+      <div className="w-1/3 md:w-1/3">
         {user && (
           <div className='flex justify-end items-center cursor-pointer'>
             {showGPT && (
@@ -60,8 +66,8 @@ const Header = () => {
             <div className="flex justify-end gap-x-2 w-9/12 md:gap-x-5">
 
             <div onClick={handleGPT} className="">
-              <h1 className='text-gray-300 bg-blue-600 p-1 px-2 md:p-2 md:px-4 text-xs md:w-24 text-center rounded-md md:text-sm '>
-                {showGPT ? lang?.[langId].homepage : "Search"}
+              <h1 className='text-gray-300 bg-blue-600 p-1 px-2 md:p-3 md:px-4 text-xs md:w-28 text-center rounded-md md:text-sm font-semibold '>
+                {showGPT ? lang?.[langId].homepage : "GPT Search"}
               </h1>
             </div>
             <div onMouseLeave={closeDropdown} className="">

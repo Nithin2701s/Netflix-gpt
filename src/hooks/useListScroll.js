@@ -6,13 +6,17 @@ const useListScroll = (movieRef) => {
     if (!container) return;
 
     const scrollLeft = container.scrollLeft;
-    const scrollWidth = container.scrollWidth / 2;
-
-    if (scrollLeft >= scrollWidth) {
-      container.scrollLeft = scrollLeft - scrollWidth;
-    }
-    if (scrollLeft <= 1) {
-      container.scrollLeft = scrollLeft + scrollWidth;
+    const scrollWidth = container.scrollWidth;
+    const containerWidth = container.clientWidth;
+  
+    const maxScrollLeft = scrollWidth - containerWidth;
+    const midpoint = maxScrollLeft / 2;
+  
+    // When the user scrolls past the duplicated list, jump back to the middle
+    if (scrollLeft >= maxScrollLeft - 1) {
+      container.scrollLeft = midpoint - containerWidth;
+    } else if (scrollLeft <= 1) {
+      container.scrollLeft = midpoint + 1;
     }
   }, [movieRef]);
 
@@ -20,7 +24,7 @@ const useListScroll = (movieRef) => {
     if (!movieRef.current) return;
 
     const scrollContainer = movieRef.current;
-    scrollContainer.scrollLeft = scrollContainer.scrollWidth / 2 +2;
+    scrollContainer.scrollLeft = scrollContainer.scrollWidth / 2;
 
     scrollContainer.addEventListener("scroll", handleScroll);
 

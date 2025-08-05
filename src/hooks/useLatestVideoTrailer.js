@@ -16,7 +16,7 @@ const useLatestVideoTrailer = (movieId)=>{
         const json = await response.json();
         // console.log(json.results)
         const filterVideos = json.results.filter(
-          (video) => video.type === "Teaser"
+          (video) => video.type === "Trailer"
         );
         // console.log(filterVideos[0]);
         const videoTrailer = filterVideos.length > 0? filterVideos[0]:json.results[0]
